@@ -6,6 +6,9 @@ bool PlayGameAtLevel(int Difficulty)
 	std::cout << "\n\"Ok so moving on to level " << Difficulty << " of the game you'll be looking for 3 numbers which...\n";
 
 	// Declare constants
+	const int NumberA = rand() % Difficulty + Difficulty;
+	const int NumberB = rand() % Difficulty + Difficulty;
+	const int NumberC = rand() % Difficulty + Difficulty;
 	
 	// Get summary values
 	const int NumbersSum = NumberA + NumberB + NumberC;
