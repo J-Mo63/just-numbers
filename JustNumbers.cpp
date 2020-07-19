@@ -1,44 +1,63 @@
 #include <iostream>
 
-int main()
+bool PlayGameAtLevel(int Difficulty)
 {
 	// Display introductory text
-	std::cout << "\"Welcome to Letters & Numbers, where the equasions roam free and the thesaurus is not a dinosaur.\"" << std::endl;
-	std::cout << "*whispers from offstage*" << std::endl;
-	std::cout << "\"... well then, welcome to Just Numbers, as we are apparently low on stock in the alphabetical department.\"" << std::endl;
-	std::cout << "\"Entering the world of numbers now, we'll select our first three of the show.\"" << std::endl;
+	std::cout << "\n\"Ok so moving on to level " << Difficulty << " of the game you'll be looking for 3 numbers which...\n";
 
 	// Declare constants
-	const int NumberA = 4;
-	const int NumberB = 3;
-	const int NumberC = 2;
 	
 	// Get summary values
 	const int NumbersSum = NumberA + NumberB + NumberC;
 	const int NumbersProduct = NumberA * NumberB * NumberC;
 
 	// Display summary values
-	std::cout << std::endl << "You'll be looking for three (3) numbers which..." << std::endl;
-	std::cout << "add up to " << NumbersSum << std::endl;
-	std::cout << "and mutiply up to "<< NumbersProduct << std::endl;
+	std::cout << "...add up to " << NumbersSum << "...\n";
+	std::cout << "...and mutiply up to "<< NumbersProduct << "\"\n";
 
 	int GuessA, GuessB, GuessC;
 	std::cin >> GuessA >> GuessB >> GuessC;
-	std::cout << "You entered: " << GuessA << GuessB << GuessC << std::endl;
 
-	int GuessSum = GuessA + GuessB + GuessC;
-	int GuessProduct = GuessA * GuessB * GuessC;
+	const int GuessSum = GuessA + GuessB + GuessC;
+	const int GuessProduct = GuessA * GuessB * GuessC;
 
-	if (GuessSum == NumbersSum && GuessProduct == NumbersProduct)
+	const bool bHasWonLevel = GuessSum == NumbersSum && GuessProduct == NumbersProduct;
+
+	std::cout << (bHasWonLevel ? "\"That is correct!\"" : "\"Unfortunately that is incorrect.\"") << std::endl;
+
+	return bHasWonLevel;
+}
+
+void PrintIntroduction()
+{
+	std::cout << "\n\n\"Welcome to Letters & Numbers, where the equasions roam free and the thesaurus is not a dinosaur.\"\n";
+	std::cout << "*whispers from offstage*\n";
+	std::cout << "\"...well then, welcome to Just Numbers, as we are apparently low on stock in the alphabetical department.\"\n";
+	std::cout << "\"Entering the world of numbers now, we'll select our first three of the show.\"\n";
+}
+
+int main()
+{
+
+	// Display introduction
+	PrintIntroduction();
+
+	// Start the game loop
+	int LevelDifficulty = 1;
+	const int MaxDifficulty = 5;
+	while (LevelDifficulty <= MaxDifficulty)
 	{
-		std::cout << "You win!";
-	}
-	else
-	{
-		std::cout << "You lose!";
-	}
+		// Run the level
+		if (PlayGameAtLevel(LevelDifficulty))
+		{
+			++LevelDifficulty;
+		}
 
-	std::cout << std::endl;
+		// Clean up the input stream
+		std::cin.clear();
+		std::cin.ignore();
+	}
+	std::cout << "\"Nice job and thank you for playing!\"\n";
 
 	return 0;
 }
