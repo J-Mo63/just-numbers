@@ -1,4 +1,5 @@
 #include <iostream>
+#include <ctime>
 
 bool PlayGameAtLevel(int Difficulty)
 {
@@ -41,6 +42,8 @@ void PrintIntroduction()
 
 int main()
 {
+	// Set a random seed based on time
+	srand(time(NULL));
 
 	// Display introduction
 	PrintIntroduction();
